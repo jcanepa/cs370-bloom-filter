@@ -21,10 +21,13 @@ class BloomFilter:
         for i in range(self.hash_count):
             # unique input converted into UTF-8 byte sequence
             item_bytes = (str(item) + str(i)).encode()
+
             # hexidecimal representation of the MD5 hash object
             hash_hex = hashlib.md5(item_bytes).hexdigest()
+
             # convert hex hash to integer, mod by size of BloomFilter
             hash_value = int(hash_hex, 16) % self.size
+
             # append resulting hash value
             hash_list.append(hash_value)
         return hash_list
