@@ -17,16 +17,12 @@ Make sure you have the following installed:
 To check if Python is installed, run:
 
 ```bash
-python --version
+python3 --version
 ```
 
 ## Running the Project
 
 To execute the Bloom filter using main.py, run the following command:
-```bash
-python main.py
-```
-Or,
 ```bash
 python3 main.py
 ```
