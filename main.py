@@ -73,7 +73,7 @@ def evaluate_bloom_filter_with_stats(bf, seed_file, dictionary_file):
     Returns:
         dict: a dictionary with TP, TN, FP, FN statistics.
     """
-    # read the seed file (positive set) and add to the bloom filter
+    # read the seed file (positive set) and add to bloom filter
     positive_set = set(read_file_lines(seed_file))
     for item in positive_set:
         bf.add(item)
@@ -102,7 +102,7 @@ def evaluate_bloom_filter_with_stats(bf, seed_file, dictionary_file):
             else:
                 true_negative += 1  # correctly identified as not present
 
-    # Calculate total items and percentages
+    # calculate total items and percentages
     total_items = true_positive + true_negative + false_positive + false_negative
 
     true_positive_percentage = (true_positive / total_items) * 100 if total_items else 0
@@ -120,24 +120,37 @@ def evaluate_bloom_filter_with_stats(bf, seed_file, dictionary_file):
 
 
 def main():
+    # word list used to populate bloom filter
     seed_file_path = 'templates/rockyou.ISO-8859-1.txt'
 
     # count the number of items in the file
-    line_count = count_lines_in_file(seed_file_path)
+    line_count = count_lines_in_file(
+        seed_file_path
+    )
 
     # desired false positive rate (1%)
     false_positive_rate = 0.01
 
-    # calculate m (bit array size) and k (number of hash functions)
-    size, hash_count = get_bf_parameters(n=line_count, p=false_positive_rate)
+    # calculate bit array size (m) & number of hash functions (k)
+    size, hash_count = get_bf_parameters(
+        n=line_count,
+        p=false_positive_rate
+    )
 
     # create bloom filter with optimal m and k
-    bf = BloomFilter(size, hash_count)
+    bf = BloomFilter(
+        size,
+        hash_count
+    )
 
     dictionary_file_path = 'templates/dictionary.txt'
 
     # evaluate bloom filter and get results
-    results = evaluate_bloom_filter_with_stats(bf, seed_file_path, dictionary_file_path)
+    results = evaluate_bloom_filter_with_stats(
+        bf,
+        seed_file_path,
+        dictionary_file_path
+    )
 
     # display the results of bloom filter's accuracy test
     print(f"True Positive: {results['True Positive']}")
