@@ -140,6 +140,8 @@ def main():
         p=false_positive_rate
     )
 
+    print(f"Bit Array Size: {size}\nHash Count: {hash_count}")
+
     # create bloom filter with optimal m and k
     bf = BloomFilter(
         size,
@@ -163,7 +165,7 @@ def main():
 
     # end program timer
     execution_time = time.time() - start_time
-    print(f"Program execution time: {execution_time} seconds")
+    print(f"Program Execution Time: {execution_time} seconds")
 
 if __name__ == "__main__":
     main()
