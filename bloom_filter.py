@@ -42,5 +42,7 @@ class BloomFilter:
         """
         for hash_value in self._hashes(item):
             if self.bit_array[hash_value] == 0:
-                return "no"
-        return "maybe"
+                # print("no")
+                return False
+        # print("maybe")
+        return True

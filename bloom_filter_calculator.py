@@ -2,7 +2,15 @@ import math
 
 class BloomFilterCalculator:
     """
-    A static class to calculate the optimal size and number of hash functions for a Bloom filter.
+    A static class to calculate the optimal size and number of hash functions for a Bloom filter:
+
+    Given:
+        size, n
+        false-positive rate, p
+
+    Calculate:
+        items                   m = ceil((n * log(p)) / log(1 / pow(2, log(2))));
+        hashes                  k = round((m / n) * log(2));
     """
 
     @staticmethod
@@ -18,7 +26,7 @@ class BloomFilterCalculator:
             int: The optimal size (m) of the Bloom filter in bits.
         """
         m = -(n * math.log(p)) / (math.log(2) ** 2)
-        return int(m)  # integer (rounds down)
+        return int(m)  # rounds down
 
     @staticmethod
     def calculate_k(m, n):
@@ -33,7 +41,7 @@ class BloomFilterCalculator:
             int: The optimal number of hash functions (k).
         """
         k = (m / n) * math.log(2)
-        return int(k)  # integer (rounds down)
+        return int(k)  # rounds down
 
     @staticmethod
     def get_parameters(n, p):
