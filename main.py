@@ -118,7 +118,6 @@ def evaluate_bloom_filter_with_stats(bf, seed_file, dictionary_file):
         "False Negative": (false_negative, f"{false_negative_percentage:.2f}%")
     }
 
-
 def main():
     # word list used to populate bloom filter
     seed_file_path = 'templates/rockyou.ISO-8859-1.txt'
