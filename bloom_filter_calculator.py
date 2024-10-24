@@ -25,8 +25,8 @@ class BloomFilterCalculator:
         Returns:
             int: The optimal size (m) of the Bloom filter in bits.
         """
-        m = -(n * math.log(p)) / (math.log(2) ** 2)
-        return int(m)  # rounds down
+        m = math.ceil((n * math.log(p)) / math.log(1 / pow(2, math.log(2))));
+        return int(m)
 
     @staticmethod
     def calculate_k(m, n):
@@ -40,8 +40,8 @@ class BloomFilterCalculator:
         Returns:
             int: The optimal number of hash functions (k).
         """
-        k = (m / n) * math.log(2)
-        return int(k)  # rounds down
+        k = round((m / n) * math.log(2))
+        return int(k)
 
     @staticmethod
     def get_parameters(n, p):
