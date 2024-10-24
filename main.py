@@ -1,3 +1,4 @@
+import time
 from bloom_filter import BloomFilter
 from bloom_filter_calculator import BloomFilterCalculator
 
@@ -119,6 +120,9 @@ def evaluate_bloom_filter_with_stats(bf, seed_file, dictionary_file):
     }
 
 def main():
+    # time bloom filter
+    start_time = time.time()
+
     # word list used to populate bloom filter
     seed_file_path = 'templates/rockyou.ISO-8859-1.txt'
 
@@ -142,6 +146,14 @@ def main():
         hash_count
     )
 
+    # End bloom filter timer
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Bloom filter execution time: {execution_time} seconds")
+
+    # time analytics
+    start_time = time.time()
+
     dictionary_file_path = 'templates/dictionary.txt'
 
     # evaluate bloom filter and get results
@@ -156,6 +168,11 @@ def main():
     print(f"True Negative: {results['True Negative']}")
     print(f"False Positive: {results['False Positive']}")
     print(f"False Negative: {results['False Negative']}")
+
+    # end analytics timer
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Evaluation time: {execution_time} seconds")
 
 if __name__ == "__main__":
     main()

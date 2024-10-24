@@ -9,14 +9,14 @@ class BloomFilterCalculator:
         false-positive rate, p
 
     Calculate:
-        items                   m = ceil((n * log(p)) / log(1 / pow(2, log(2))));
-        hashes                  k = round((m / n) * log(2));
+        items, m
+        hashes, k
     """
 
     @staticmethod
     def calculate_m(n, p):
         """
-        Calculate the optimal bit-size for the Bloom filter, m.
+        Calculate m, optimal bit-size for the Bloom filter.
 
         Args:
             n (int): The expected number of items to be stored in the Bloom filter.
@@ -31,7 +31,7 @@ class BloomFilterCalculator:
     @staticmethod
     def calculate_k(m, n):
         """
-        Calculate the optimal number of hash functions for the Bloom filter, k.
+        Calculate k, the optimal number of hash functions for the Bloom filter.
 
         Args:
             m (int): The size of the bit array (in bits).
